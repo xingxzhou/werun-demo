@@ -9,6 +9,9 @@ const sequelize = new Sequelize('nodejs_demo', MYSQL_USERNAME, MYSQL_PASSWORD, {
   host,
   port,
   dialect: 'mysql' /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */,
+	define: {
+    timestamps: false,
+  },
 });
 
 module.exports = {
