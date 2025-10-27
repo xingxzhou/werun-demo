@@ -48,7 +48,7 @@ app.get('/api/exhibitions/:id', async (req, res) => {
 app.get('/api/artworks/:id', async (req, res) => {
   const artworkId = req.params.id;
 
-  const artwork = await Exhibition.findByPk(artworkId);
+  const artwork = await Artwork.findByPk(artworkId);
 
   res.send({
     code: 0,
