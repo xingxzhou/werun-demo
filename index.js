@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const { init: initDB, Exhibition } = require('./database');
+const { init: initDB, Exhibition, Artist } = require('./database');
 
 const logger = morgan('tiny');
 
