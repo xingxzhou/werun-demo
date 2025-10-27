@@ -12,21 +12,48 @@ const sequelize = new Sequelize("nodejs_demo", MYSQL_USERNAME, MYSQL_PASSWORD, {
 });
 
 // 定义数据模型
-const Counter = sequelize.define("Counter", {
-  count: {
+const Exhibition = sequelize.define('Exhibition', {
+  id: {
     type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true, // 自动递增
     allowNull: false,
-    defaultValue: 1,
   },
+  title: {
+    type: DataTypes.STRING(191),
+    allowNull: false,
+    defaultValue: '',
+  },
+  description: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+  start_date: {
+    type: DataTypes.DATEONLY, // DATE 类型
+    allowNull: false,
+  },
+  end_date: {
+    type: DataTypes.DATEONLY,
+    allowNull: false,
+  },
+  cover_image: {
+    type: DataTypes.STRING(191),
+    allowNull: false,
+    defaultValue: '',
+  },
+}, {
+  tableName: 'Exhibitions', // 指定数据库表名
+  timestamps: false,        // 如果你没有 createdAt / updatedAt
+  comment: '展览表',        // 表注释
 });
 
 // 数据库初始化方法
 async function init() {
-  await Counter.sync({ alter: true });
+  await Exhibition.sync({ alter: true });
 }
 
 // 导出初始化方法和模型
 module.exports = {
   init,
-  Counter,
+  Exhibition,
 };
