@@ -19,6 +19,10 @@ const Exhibition = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    curators: {
+      type: DataTypes.STRING(191),
+      allowNull: false,
+    },
     description_rich: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -32,9 +36,13 @@ const Exhibition = sequelize.define(
       allowNull: false,
     },
     cover_image: {
-      type: DataTypes.STRING(191),
+      type: DataTypes.JSON,
       allowNull: false,
       defaultValue: '',
+    },
+    poster_image: {
+      type: DataTypes.STRING(191),
+      allowNull: true,
     },
   },
   {
