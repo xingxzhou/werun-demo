@@ -41,7 +41,7 @@ const Exhibition = sequelize.define(
       defaultValue: '',
     },
     poster_image: {
-      type: DataTypes.STRING(191),
+      type: DataTypes.JSON,
       allowNull: true,
     },
   },
