@@ -10,13 +10,13 @@ const Artwork = sequelize.define(
       autoIncrement: true,
       comment: '作品ID',
     },
-    name: {
+    title: {
       type: DataTypes.STRING(191),
       allowNull: true,
       defaultValue: '',
       comment: '作品中文名',
     },
-    name_en: {
+    title_en: {
       type: DataTypes.STRING(191),
       allowNull: false,
       defaultValue: '',
