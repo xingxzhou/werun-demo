@@ -32,6 +32,7 @@ const Artist = sequelize.define(
   },
   {
     tableName: 'Artists',
+		timestamps: false,
     comment: '艺术家表',
   }
 );
