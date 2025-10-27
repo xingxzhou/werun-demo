@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const { init: initDB, Exhibition } = require('./db');
+const { init: initDB, Exhibition } = require('./database');
 
 const logger = morgan('tiny');
 
@@ -26,6 +26,19 @@ app.get('/api/exhibitions', async (req, res) => {
   res.send({
     code: 0,
     data: result,
+  });
+});
+
+app.get('/api/exhibitions/:id', async (req, res) => {
+  const exhibitionId = req.params.id;
+
+  const exhibition = await Exhibition.findByPk(exhibitionId, {
+    include: [{ model: Artist, as: 'artists' }],
+  });
+
+  res.send({
+    code: 0,
+    data: exhibition,
   });
 });
 
