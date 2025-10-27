@@ -11,7 +11,7 @@ const Exhibition = sequelize.define(
 			allowNull: false,
 		},
 		title: {
-			type: DataTypes.STRING(191),
+			type: DataTypes.TEXT,
 			allowNull: false,
 			defaultValue: '',
 		},
