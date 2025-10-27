@@ -3,12 +3,14 @@ const { Exhibition, Artist, ExhibitionArtist } = require('./models');
 // 关系表
 Exhibition.belongsToMany(Artist, {
   through: 'ExhibitionArtists',
+	as: 'artists',
   foreignKey: 'exhibition_id',
 });
 
 // Artist.js
 Artist.belongsToMany(Exhibition, {
   through: 'ExhibitionArtists',
+	as: 'exhibitions',
   foreignKey: 'artist_id',
 });
 
