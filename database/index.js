@@ -4,6 +4,7 @@ const {
   ExhibitionArtist,
   Artwork,
   ExhibitionArtwork,
+  ExhibitionBooking,
 } = require('./models');
 
 // 关系表
@@ -44,4 +45,5 @@ module.exports = {
   Artwork,
   ExhibitionArtist,
   ExhibitionArtwork,
+  ExhibitionBooking,
 };

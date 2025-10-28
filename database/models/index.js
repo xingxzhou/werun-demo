@@ -3,6 +3,7 @@ const { Artist } = require('./artist');
 const { ExhibitionArtist } = require('./exhibition-artist');
 const { Artwork } = require('./artwork');
 const { ExhibitionArtwork } = require('./exhibition-artwork');
+const { ExhibitionBooking } = require('./exhibition-booking');
 
 module.exports = {
   Exhibition,
@@ -10,4 +11,5 @@ module.exports = {
   ExhibitionArtist,
   Artwork,
   ExhibitionArtwork,
+  ExhibitionBooking,
 };

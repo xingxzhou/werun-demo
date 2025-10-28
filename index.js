@@ -2,7 +2,13 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const { init: initDB, Exhibition, Artist, Artwork } = require('./database');
+const {
+  init: initDB,
+  Exhibition,
+  Artist,
+  Artwork,
+  ExhibitionBooking,
+} = require('./database');
 
 const logger = morgan('tiny');
 
@@ -54,6 +60,34 @@ app.get('/api/artworks/:id', async (req, res) => {
     code: 0,
     data: artwork,
   });
+});
+
+app.get('/api/bookings', async (req, res) => {
+  const openId = req.headers['x-wx-source'];
+
+  const bookings = await ExhibitionBooking.findAll({
+    where: {
+      wx_open_id: openId,
+    },
+    order: [['id', 'DESC']],
+  });
+
+  res.send({
+    code: 0,
+    data: bookings
+  })
+});
+
+app.post('/api/bookings', async (req, res) => {
+  const body = await req.json();
+  const openId = req.headers['x-wx-source'];
+
+  const booking = await ExhibitionBooking.create({
+    ...body,
+    wx_open_id: openId,
+  });
+
+  res.send({ code: 0, data: booking });
 });
 
 // 小程序调用，获取微信 Open ID
