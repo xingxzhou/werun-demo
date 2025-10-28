@@ -79,11 +79,10 @@ app.get('/api/bookings', async (req, res) => {
 });
 
 app.post('/api/bookings', async (req, res) => {
-  const body = await req.json();
   const openId = req.headers['x-wx-source'];
 
   const booking = await ExhibitionBooking.create({
-    ...body,
+    ...req.body,
     wx_open_id: openId,
   });
 
