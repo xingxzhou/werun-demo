@@ -9,7 +9,7 @@ const {
   Artwork,
   ExhibitionBooking,
 } = require('./database');
-
+const request = require("request");
 const logger = morgan('tiny');
 
 const app = express();
@@ -73,7 +73,7 @@ app.get('/api/bookings', async (req, res) => {
     include: {
       model: Exhibition,
       as: 'exhibition', // 注意这里的 as 要和关联定义一致
-      attributes: ['id', 'title', 'start_date', 'end_date', "cover_image"],
+      attributes: ['id', 'title', 'start_date', 'end_date', 'cover_image'],
     },
   });
 
@@ -99,6 +99,30 @@ app.get('/api/wx_openid', async (req, res) => {
   if (req.headers['x-wx-source']) {
     res.send(req.headers['x-wx-openid']);
   }
+});
+
+app.post('/api/phone', (req, res) => {
+  const api = `http://api.weixin.qq.com/wxa/getopendata?openid=${req.headers['x-wx-openid']}`;
+  request(
+    api,
+    {
+      method: 'POST',
+      body: JSON.stringify({ cloudid_list: [req.body.cloudid] }),
+      headers: { 'Content-Type': 'application/json' },
+    },
+    (err, resp, body) => {
+      try {
+        const data = JSON.parse(body).data_list[0];
+        const phone = JSON.parse(data.json).data.phoneNumber;
+        res.send({
+          code: 0,
+          phone,
+        }); // 实际应做好手机号保护
+      } catch (error) {
+        res.send({ code: 403, message: "'get phone failed'" });
+      }
+    }
+  );
 });
 
 const port = process.env.PORT || 80;
