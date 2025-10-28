@@ -63,7 +63,7 @@ app.get('/api/artworks/:id', async (req, res) => {
 });
 
 app.get('/api/bookings', async (req, res) => {
-  const openId = req.headers['x-wx-source'];
+  const openId = req.headers['x-wx-openid'];
 
   const bookings = await ExhibitionBooking.findAll({
     where: {
