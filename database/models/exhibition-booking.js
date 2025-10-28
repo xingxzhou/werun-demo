@@ -22,7 +22,7 @@ const ExhibitionBooking = sequelize.define(
       allowNull: false,
     },
     date: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.STRING(191),
       allowNull: false,
     },
     slot: {
