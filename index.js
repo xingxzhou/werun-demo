@@ -70,12 +70,17 @@ app.get('/api/bookings', async (req, res) => {
       wx_open_id: openId,
     },
     order: [['id', 'DESC']],
+    include: {
+      model: Exhibition,
+      as: 'exhibition', // 注意这里的 as 要和关联定义一致
+      attributes: ['id', 'title', 'start_date', 'end_date', "cover_image"],
+    },
   });
 
   res.send({
     code: 0,
-    data: bookings
-  })
+    data: bookings,
+  });
 });
 
 app.post('/api/bookings', async (req, res) => {

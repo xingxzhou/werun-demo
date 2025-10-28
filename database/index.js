@@ -28,6 +28,12 @@ Exhibition.belongsToMany(Artwork, {
   otherKey: 'artwork_id',
 });
 
+// 每个预约属于一个展览
+ExhibitionBooking.belongsTo(Exhibition, {
+  foreignKey: 'exhibition_id',
+  as: 'exhibition'
+});
+
 // 数据库初始化方法
 async function init() {
   await Exhibition.sync({ alter: true });
