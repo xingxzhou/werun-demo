@@ -32,9 +32,6 @@ const ExhibitionBooking = sequelize.define(
     status: {
       type: DataTypes.STRING(191),
     },
-    created_at: {
-      type: DataTypes.DATETIME,
-    },
     name: {
       type: DataTypes.STRING(191),
       allowNull: false,
